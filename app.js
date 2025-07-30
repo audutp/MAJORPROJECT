@@ -6,15 +6,17 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const res = require("express/lib/response.js");
+require('dotenv').config({ path: './.env' });
+console.log("Loaded ENV Variables:", process.env.KEY);
+// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
-
-main()
-.then( () => {
-    console.log("connected to DB");
-}).catch(err => {
-    console.log(err);
-});
+main().then(() => { console.log("connected successful to DB") }).catch(err => { console.log(err); })
+async function main() {
+    console.log("Connecting to MongoDB Atlas");
+    // await mongoose.connect(process.env.Database_url_atlas)
+    await mongoose.connect(process.env.Database_url_atlas) 
+    console.log("Connected to MongoDB Atlas");
+}
 
 async function main() {
     await mongoose.connect(MONGO_URL);
