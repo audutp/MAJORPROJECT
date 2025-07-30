@@ -25,17 +25,17 @@ app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
-app.use("/api", (req,res,next)=>{
-    let {token}= req.query;
-    if (token === "giveaccess"){
-        next();
-    }
-    res.send("ACCESS DENIED!");
-});
+// app.use("/api", (req,res,next)=>{
+//     let {token}= req.query;
+//     if (token === "giveaccess"){
+//         next();
+//     }
+//     res.send("ACCESS DENIED!");
+// });
 
-app.get("/api", checkToken, (req,res) =>{
-    res.send("data");
-})
+// app.get("/api", checkToken, (req,res) =>{
+//     res.send("data");
+// })
 
 app.get("/",(req,res) => {
     res.status(404).send("Hi,I am root");
